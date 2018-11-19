@@ -1,0 +1,55 @@
+﻿@model IEnumerable<TaskListCapstone.Models.Task>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DueDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Complete)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+
+    if (Convert.ToInt32(Session["UserID"]) == item.UserID)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Complete)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.TaskID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.TaskID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.TaskID })
+        </td>
+    </tr>
+    }
+}
+
+</table>
